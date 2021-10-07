@@ -440,6 +440,36 @@
 				"[concat(variables('factoryId'), '/datasets/ds_input')]",
 				"[concat(variables('factoryId'), '/datasets/ds_output')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_sched')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_alert",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 3,
+						"startTime": "2021-10-07T18:23:00Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pl_alert')]"
+			]
 		}
 	]
 }
