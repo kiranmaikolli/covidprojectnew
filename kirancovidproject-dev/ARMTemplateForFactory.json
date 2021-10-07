@@ -109,10 +109,13 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"url": "https://dummy",
+										"url": "https://prod-68.eastus.logic.azure.com:443/workflows/496f567ecc984a3fbfc8981f62f2a498/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=6ymGuMvqFqSnvcR7dEIYNIP7zPayCnLc13CgLnyVcRQ",
 										"method": "POST",
 										"headers": {},
-										"body": "dummy"
+										"body": {
+											"value": "{\n\"title\" :\"Welcome to ADFactory\",\n\"message\" : \"Pipeline Failed!!!!!\"\n}",
+											"type": "Expression"
+										}
 									}
 								}
 							],
@@ -439,36 +442,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_blob_kv')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tr_sched')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_alert",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Minute",
-						"interval": 3,
-						"startTime": "2021-10-07T18:23:00Z",
-						"timeZone": "UTC"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_alert')]"
 			]
 		}
 	]
