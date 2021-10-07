@@ -4,6 +4,12 @@
 	"parameters": {
 		"factoryName": {
 			"value": "kirancovidproject-dev"
+		},
+		"ls_blob_kv_properties_typeProperties_baseUrl": {
+			"value": "https://kirancovidprojectdev-kv.vault.azure.net/"
+		},
+		"ls_blobconnection_properties_typeProperties_connectionString_secretName": {
+			"value": "BlobConnectionString-dev"
 		}
 	}
 }
